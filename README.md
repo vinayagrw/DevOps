@@ -1,0 +1,1 @@
+ansible-playbook  ~/kube-cluster/kube-dependencies.yml --limit "k8s-master" --user=ansible --extra-vars "ansible_sudo_pass=ansible"

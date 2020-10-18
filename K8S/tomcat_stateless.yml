@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat
+  namespace: tomcat
+  labels:
+    app: tomcat
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tomcat
+  template:
+    metadata:
+      labels:
+        app: tomcat
+    spec:
+      containers:
+      - name: tomcat
+        image: vinayagrw/tomcat:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: docker-sock-volume
+          mountPath: /var/run/docker.sock
+        resources:
+            limits:
+               cpu: 1 # Example  "2"
+               memory: 1 # Example  10Gi
+            requests:
+              cpu: 1 # Example  "2"
+              memory: 1 # Example  10Gi
+         readinessProbe:
+             httpGet:
+               path: /
+               port: 8080
+             failureThreshold: 30
+             initialDelaySeconds: 30
+             periodSeconds: 10
+             successThreshold: 1
+             timeoutSeconds: 10
+         livenessProbe:
+             httpGet:
+               path: /
+               port: 8080
+             failureThreshold: 30
+             initialDelaySeconds: 30
+             periodSeconds: 30
+             successThreshold: 1
+             timeoutSeconds: 10
