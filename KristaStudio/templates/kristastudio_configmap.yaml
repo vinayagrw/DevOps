@@ -1,0 +1,27 @@
+﻿{{- if .Values.kristaConfig }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "KristaStudio.fullname" . }}-kristaconfig
+  namespace: {{- include "KristaStudio.namespace" . }}
+  labels:
+    {{- include "KristaStudio.labels" . | nindent 4 }} 
+data:
+  env.js: |-
+    (function(window) {
+    window.env = window.env || {};
+    window.env.byPassLogin = false;
+    window.env.application = "studio";
+    window.env.local_ip = null;
+    window.env.serviceUrl = "https://kristagrand.antbrains.com";
+    window.env.debug = false;
+    window.env.proxy_url = null;
+    window.env.appLogLocalStorage = false;
+    window.env.production = true;
+    window.env.version_code = 1;
+    window.env.version_name = "2019.01.11";
+    window.env.version = "1";
+    window.env.build = "2019.01.11";
+    window.env. buildNumber = "KristaStudio-1.0.145";
+    window.env.google_map_key = "AIzaSyB7LuaW-VMMhynFSrb0380SQUigBt-Ga98";
+    })(this);
