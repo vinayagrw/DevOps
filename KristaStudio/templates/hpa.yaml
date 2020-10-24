@@ -3,6 +3,7 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "KristaStudio.fullname" . }}
+  namespace: {{ include "KristaStudio.namespace" . }}
   labels:
     {{- include "KristaStudio.labels" . | nindent 4 }}
 spec:

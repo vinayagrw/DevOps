@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "KristaStudio.fullname" . }}
-  namespace: {{- include "KristaStudio.namespace" . }}
+  namespace: {{ include "KristaStudio.namespace" . }}
   labels:
     {{- include "KristaStudio.labels" . | nindent 4 }}    
 spec:
@@ -33,16 +33,16 @@ spec:
       serviceAccountName: {{ include "KristaStudio.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      stdin: true
-      terminationMessagePath: /dev/termination-log
-      terminationMessagePolicy: File
-      tty: true
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
           ports:
             - name: http
               containerPort: {{ .Values.service.targetPort }}

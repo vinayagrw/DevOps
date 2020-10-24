@@ -1,6 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "KristaStudio.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
+{{- $ingressPath := .Values.ingress.path -}}
 {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
 {{- else -}}
@@ -9,7 +10,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ include "KristaStudio.fullname" . }}
-  namespace: {{- include "KristaStudio.namespace" . }}
+  namespace: {{ include "KristaStudio.namespace" . }}
   labels:
     {{- include "KristaStudio.labels" . | nindent 4 }} 
   {{- with .Values.ingress.annotations }}
@@ -32,8 +33,8 @@ spec:
     - host: {{ .host | quote }}
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ . }}
+                #{{- range .paths }}
+          - path: /
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}

@@ -48,13 +48,14 @@ service:
   # portName: service
 
 ingress:
-  enabled: false
+  enabled: true 
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: demo-kristastudio.antbrains.com
-      paths: []
+      paths:
+        - path: /     
   tls: 
     - secretName: studio
       hosts: 
@@ -88,7 +89,7 @@ affinity: {}
 ## Override the deployment namespace
 ##
 
-namespaceOverride: ""
+namespaceOverride: "krista"
 
 ngnixConfig: {}
 #  studio.conf: |-

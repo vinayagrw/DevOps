@@ -1,9 +1,8 @@
-﻿{{- if .Values.kristaConfig }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ include "KristaStudio.fullname" . }}-kristaconfig
-  namespace: {{- include "KristaStudio.namespace" . }}
+  namespace: {{ include "KristaStudio.namespace" . }}
   labels:
     {{- include "KristaStudio.labels" . | nindent 4 }} 
 data:
