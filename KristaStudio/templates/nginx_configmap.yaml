@@ -1,7 +1,7 @@
 ﻿apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "KristaStudio.fullname" . }}-ngnixConfig
+  name: {{ include "KristaStudio.fullname" . }}-ngnixconfig
   namespace: {{ include "KristaStudio.namespace" . }}
   labels:
     {{- include "KristaStudio.labels" . | nindent 4 }} 
