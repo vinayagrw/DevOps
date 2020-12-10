@@ -1,0 +1,54 @@
+version: '3.4'
+
+#networks:
+#  host:
+#    driver: host
+networks:
+    host:
+        external: true
+          #  name: host
+
+
+services:
+  band-ms:
+    image: 'vinayagrw/ondo:band1'
+#    networks:
+#      - host
+    build:
+      context: Band-MS/
+      dockerfile: Dockerfile
+  bridge-ms:
+    image: 'vinayagrw/ondo:bridge1'
+#    networks:
+#      - host
+    build:
+      context: Bridge-MS/
+      dockerfile: Dockerfile
+  corporate-ms:
+    image: 'vinayagrw/ondo:corporate-ms1'
+#    networks:
+#      - host
+    build:
+      context: Corporate-MS/
+      dockerfile: Dockerfile
+  discovery:
+    image: 'vinayagrw/ondo:discovery1'
+#    networks:
+#      - host
+    build:
+      context: Discovery/
+      dockerfile: Dockerfile
+  user-ms:
+    image: 'vinayagrw/ondo:user1'
+#    networks:
+#      - host
+    build:
+      context: User-MS/
+      dockerfile: Dockerfile
+  wearer:
+    image: 'vinayagrw/ondo:wearer1'
+    build:
+      context: Wearer-MS/
+      dockerfile: Dockerfile
+#    networks:
+#      - host

@@ -1,0 +1,47 @@
+### Spring properties
+# Service registers under this name
+spring:
+  application:
+    name: user-microservice  
+
+amazon:
+  dynamodb:
+    endpoint: https://dynamodb.ap-south-1.amazonaws.com
+    accesskey: AKIARS3PKKIRVQGINOWF  
+    secretkey: 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
+
+
+
+# Discovery Server Access
+eureka:
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:1111/eureka/
+
+# HTTP Server (Tomcat) Port
+server: 
+  port: 2222
+
+# Disable Spring Boot's "Whitelabel" default error page, so we can use our own
+error:
+  whitelabel:
+    enabled: false
+  
+ 
+      
+# SMPT Email Configuration    
+mail:
+    host: smtp.gmail.com
+    port: 587
+    username: mymail@gmail.com
+    password: mypassword
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+        auth: true
+        starttls.enable: true
+        ssl.trust: smtp.gmail.com
+        
+logging:
+    file:
+        name: myapplication.log
